@@ -15,14 +15,14 @@ endif()
 file(
 	GLOB
 	ASTC_CODEC_SOURCES
-	${BIMG_DIR}/3rdparty/astc-codec/src/decoder/*.cc
-	${BIMG_DIR}/3rdparty/astc-codec/src/decoder/*.h
+	${BIMG_DIR}/3rdparty/astc-encoder/source/*.cpp
+	${BIMG_DIR}/3rdparty/astc-encoder/include/*.h
 )
 
 add_library( astc-codec STATIC ${ASTC_CODEC_SOURCES} )
 target_include_directories( astc-codec
 	PUBLIC
 		$<BUILD_INTERFACE:${BIMG_DIR}/3rdparty>
-		$<BUILD_INTERFACE:${BIMG_DIR}/3rdparty/astc-codec>
-		$<BUILD_INTERFACE:${BIMG_DIR}/3rdparty/astc-codec/include> )
+		$<BUILD_INTERFACE:${BIMG_DIR}/3rdparty/astc-encoder>
+		$<BUILD_INTERFACE:${BIMG_DIR}/3rdparty/astc-encoder/include> )
 set_target_properties( astc-codec PROPERTIES FOLDER "bgfx/3rdparty" )

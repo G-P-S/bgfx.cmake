@@ -10,7 +10,6 @@
 
 # Third party libs
 include( cmake/3rdparty/astc-codec.cmake )
-include( cmake/3rdparty/astc.cmake )
 include( cmake/3rdparty/edtaa3.cmake )
 include( cmake/3rdparty/etc1.cmake )
 include( cmake/3rdparty/etc2.cmake )
@@ -18,6 +17,7 @@ include( cmake/3rdparty/iqa.cmake )
 include( cmake/3rdparty/libsquish.cmake )
 include( cmake/3rdparty/nvtt.cmake )
 include( cmake/3rdparty/pvrtc.cmake )
+include( cmake/3rdparty/tinyexr.cmake )
 
 # Ensure the directory exists
 if( NOT IS_DIRECTORY ${BIMG_DIR} )
@@ -38,7 +38,7 @@ target_include_directories( bimg
 		$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 
 # bimg dependencies
-target_link_libraries( bimg bx astc-codec astc edtaa3 etc1 etc2 iqa squish nvtt pvrtc )
+target_link_libraries( bimg bx astc-codec edtaa3 etc1 etc2 iqa squish nvtt pvrtc tinyexr )
 
 # Put in a "bgfx" folder in Visual Studio
 set_target_properties( bimg PROPERTIES FOLDER "bgfx" )

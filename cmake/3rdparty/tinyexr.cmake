@@ -8,16 +8,18 @@
 # You should have received a copy of the CC0 Public Domain Dedication along with
 # this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
-include( CMakeParseArguments )
-
-add_executable( texturev ${BGFX_DIR}/tools/texturev/texturev.cpp )
-set_target_properties( texturev PROPERTIES FOLDER "bgfx/tools" )
-target_link_libraries( texturev example-common tinyexr "-framework IOKit")
-if( BGFX_CUSTOM_TARGETS )
-	add_dependencies( tools texturev )
+if( TARGET tinyexr )
+	return()
 endif()
 
-if (IOS)
-	set_target_properties(texturev PROPERTIES MACOSX_BUNDLE ON
-										      MACOSX_BUNDLE_GUI_IDENTIFIER texturev)
-endif()
+project (tinyexr CXX)
+
+file( GLOB TINYEXR_SOURCES ${BIMG_DIR}/3rdparty/tinyexr/*.h ${BIMG_DIR}/3rdparty/tinyexr/deps/miniz/*.h ${BIMG_DIR}/3rdparty/tinyexr/deps/miniz/*.c )
+
+add_library( tinyexr ${TINYEXR_SOURCES} )
+target_include_directories( tinyexr
+	INTERFACE
+		$<BUILD_INTERFACE:${BIMG_DIR}/3rdparty/tinyexr>
+		$<BUILD_INTERFACE:${BIMG_DIR}/3rdparty/tinyexr/deps/miniz>
+)
+set_target_properties( tinyexr PROPERTIES FOLDER "bgfx/3rdparty/tinyexr" )

@@ -10,7 +10,8 @@
 
 add_executable( geometryv ${BGFX_DIR}/tools/geometryv/geometryv.cpp )
 set_target_properties( geometryv PROPERTIES FOLDER "bgfx/tools" )
-target_link_libraries( geometryv example-common )
+target_link_libraries( geometryv example-common tinyexr "-framework IOKit")
+
 if( BGFX_CUSTOM_TARGETS )
 	add_dependencies( tools geometryv )
 endif()

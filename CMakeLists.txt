@@ -15,7 +15,7 @@ project(bgfx)
 include( cmake/version.cmake )
 
 set_property( GLOBAL PROPERTY USE_FOLDERS ON )
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
@@ -42,17 +42,17 @@ set( BGFX_LIBRARY_TYPE     "STATIC" CACHE STRING "Linking type for library" )
 set_property( CACHE BGFX_LIBRARY_TYPE PROPERTY STRINGS STATIC SHARED )
 
 if( NOT BX_DIR )
-	set( BX_DIR "${CMAKE_CURRENT_SOURCE_DIR}/bx" CACHE STRING "Location of bx." )
+	set( BX_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../bx" CACHE STRING "Location of bx." )
 elseif( NOT IS_ABSOLUTE "${BX_DIR}")
 	get_filename_component(BX_DIR "${BX_DIR}" REALPATH BASE_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
 endif()
 if( NOT BIMG_DIR )
-	set( BIMG_DIR "${CMAKE_CURRENT_SOURCE_DIR}/bimg" CACHE STRING "Location of bimg." )
+	set( BIMG_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../bimg" CACHE STRING "Location of bimg." )
 elseif( NOT IS_ABSOLUTE "${BIMG_DIR}")
 	get_filename_component(BIMG_DIR "${BIMG_DIR}" REALPATH BASE_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
 endif()
 if( NOT BGFX_DIR )
-	set( BGFX_DIR "${CMAKE_CURRENT_SOURCE_DIR}/bgfx" CACHE STRING "Location of bgfx." )
+	set( BGFX_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../bgfx" CACHE STRING "Location of bgfx." )
 elseif( NOT IS_ABSOLUTE "${BGFX_DIR}")
 	get_filename_component(BGFX_DIR "${BGFX_DIR}" REALPATH BASE_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
 endif()
@@ -118,7 +118,7 @@ if( BGFX_INSTALL )
 	install(FILES ${BGFX_DIR}/LICENSE DESTINATION ${CMAKE_INSTALL_DOCDIR})
 	install(FILES README.md DESTINATION ${CMAKE_INSTALL_DOCDIR})
 
-	install( TARGETS bgfx bimg bx astc-codec astc edtaa3 etc1 etc2 iqa squish nvtt pvrtc
+	install( TARGETS bgfx bimg bx astc-codec edtaa3 etc1 etc2 iqa squish nvtt pvrtc
 			 EXPORT "${TARGETS_EXPORT_NAME}"
 			 LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
 			 ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}"
